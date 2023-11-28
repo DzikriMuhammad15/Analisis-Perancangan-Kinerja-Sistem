@@ -1,6 +1,6 @@
 import http from "k6/http";
 import { check, group, sleep } from "k6";
-const mongoose = require("mongoose");
+
 
 export let options = {
   stages: [
@@ -81,8 +81,8 @@ export default function () {
           seats: 5,
           ticketPrice: 20000,
           total: 100000,
-          movieId: new mongoose.Types.ObjectId(),
-          cinemaId: new mongoose.Types.ObjectId(),
+          movieId: 1,
+          cinemaId: 1,
           username: "user",
           phone: "085222136798",
           checkin: false,
@@ -102,8 +102,8 @@ export default function () {
           startAt: "08.00",
           startDate: new Date(),
           endDate: new Date(),
-          movieId: new mongoose.Types.ObjectId(),
-          cinemaId: new mongoose.Types.ObjectId(),
+          movieId: 1,
+          cinemaId: 1,
         }),
         { headers: { "Content-Type": "application/json" } }
       );
@@ -143,8 +143,8 @@ export default function () {
           startAt: "08.00",
           startDate: new Date(),
           endDate: new Date(),
-          movieId: new mongoose.Types.ObjectId(),
-          cinemaId: new mongoose.Types.ObjectId(),
+          movieId: 1,
+          cinemaId: 1,
         }),
         { headers: { "Content-Type": "application/json" } }
       );
