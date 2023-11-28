@@ -9,12 +9,13 @@ const router = new express.Router();
 router.post('/users', async (req, res) => {
   try {
     const { role } = req.body;
-    if (role) throw new Error('you cannot set role property.');
+    // if (role) throw new Error('you cannot set role property.');
     const user = new User(req.body);
     await user.save();
     const token = await user.generateAuthToken();
     res.status(201).send({ user, token });
   } catch (e) {
+    console.log(e)
     res.status(400).send(e);
   }
 });
@@ -47,6 +48,7 @@ router.post('/users/login', async (req, res) => {
     const token = await user.generateAuthToken();
     res.send({ user, token });
   } catch (e) {
+    // console.log("kontol");
     res.status(400).send({
       error: { message: 'You have entered an invalid username or password' },
     });
@@ -129,12 +131,16 @@ router.post('/users/logoutAll', auth.enhance, async (req, res) => {
 
 // Get all users
 router.get('/users', auth.enhance, async (req, res) => {
-  if (req.user.role !== 'superadmin')
+  if (req.user.role !== 'superadmin') {
+
+    console.log("kontol");
     return res.status(400).send({
       error: 'Only the god can see all the users!',
     });
+  }
   try {
     const users = await User.find({});
+    console.log("satu");
     res.send(users);
   } catch (e) {
     res.status(400).send(e);
@@ -145,6 +151,7 @@ router.get('/users', auth.enhance, async (req, res) => {
 router.get('/users/me', auth.simple, async (req, res) => {
   try {
     res.send(req.user);
+    console.log("dua");
   } catch (e) {
     res.status(400).send(e);
   }

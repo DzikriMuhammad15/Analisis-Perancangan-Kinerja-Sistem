@@ -20,7 +20,9 @@ router.get('/showtimes', async (req, res) => {
   try {
     const showtimes = await Showtime.find({});
     res.send(showtimes);
+    console.log("enam");
   } catch (e) {
+    console.log("KONTOOOLLLL");
     res.status(400).send(e);
   }
 });
@@ -40,7 +42,8 @@ router.get('/showtimes/:id', async (req, res) => {
 router.patch('/showtimes/:id', auth.enhance, async (req, res) => {
   const _id = req.params.id;
   const updates = Object.keys(req.body);
-  const allowedUpdates = ['startAt', 'startDate', 'endDate', 'movieId', 'cinemaId'];
+  // const allowedUpdates = ['startAt', 'startDate', 'endDate', 'movieId', 'cinemaId'];
+  const allowedUpdates = ['startAt'];
   const isValidOperation = updates.every((update) => allowedUpdates.includes(update));
 
   if (!isValidOperation) return res.status(400).send({ error: 'Invalid updates!' });

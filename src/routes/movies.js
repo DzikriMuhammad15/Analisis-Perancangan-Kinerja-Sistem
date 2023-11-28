@@ -47,6 +47,7 @@ router.get(
 router.get('/movies', async (req, res) => {
   try {
     const movies = await Movie.find({});
+    console.log("empat");
     res.send(movies);
   } catch (e) {
     res.status(400).send(e);
