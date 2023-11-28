@@ -15,7 +15,6 @@ router.post('/users', async (req, res) => {
     const token = await user.generateAuthToken();
     res.status(201).send({ user, token });
   } catch (e) {
-    console.log(e)
     res.status(400).send(e);
   }
 });
@@ -48,7 +47,6 @@ router.post('/users/login', async (req, res) => {
     const token = await user.generateAuthToken();
     res.send({ user, token });
   } catch (e) {
-    // console.log("kontol");
     res.status(400).send({
       error: { message: 'You have entered an invalid username or password' },
     });
@@ -113,7 +111,9 @@ router.post('/users/logout', auth.simple, async (req, res) => {
     });
     await req.user.save();
     res.send({});
+    console.log("logout yes");
   } catch (e) {
+    console.log("logout kontol");
     res.status(400).send(e);
   }
 });
@@ -131,16 +131,12 @@ router.post('/users/logoutAll', auth.enhance, async (req, res) => {
 
 // Get all users
 router.get('/users', auth.enhance, async (req, res) => {
-  if (req.user.role !== 'superadmin') {
-
-    console.log("kontol");
+  if (req.user.role !== 'superadmin')
     return res.status(400).send({
       error: 'Only the god can see all the users!',
     });
-  }
   try {
     const users = await User.find({});
-    console.log("satu");
     res.send(users);
   } catch (e) {
     res.status(400).send(e);
@@ -151,7 +147,6 @@ router.get('/users', auth.enhance, async (req, res) => {
 router.get('/users/me', auth.simple, async (req, res) => {
   try {
     res.send(req.user);
-    console.log("dua");
   } catch (e) {
     res.status(400).send(e);
   }
@@ -231,6 +226,20 @@ router.delete('/users/:id', auth.enhance, async (req, res) => {
 
     res.send({ message: 'User Deleted' });
   } catch (e) {
+    res.sendStatus(400);
+  }
+});
+
+router.delete('/users/testDelete/:id', async (req, res) => {
+
+  const _id = req.params.id;
+
+  try {
+    const user = await User.findByIdAndDelete(_id);
+    res.send({ message: 'User Deleted' });
+    console.log(" DELETE YES");
+  } catch (e) {
+    console.log("ERROR DELETE");
     res.sendStatus(400);
   }
 });
