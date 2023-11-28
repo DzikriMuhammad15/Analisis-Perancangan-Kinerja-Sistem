@@ -42,7 +42,6 @@ router.post('/cinemas/photo/:id', upload('cinemas').single('file'), async (req, 
 router.get('/cinemas', async (req, res) => {
   try {
     const cinemas = await Cinema.find({});
-    console.log("tiga");
     res.send(cinemas);
   } catch (e) {
     res.status(400).send(e);

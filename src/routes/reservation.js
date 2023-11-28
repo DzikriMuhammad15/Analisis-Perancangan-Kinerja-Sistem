@@ -24,7 +24,6 @@ router.post('/reservations', auth.simple, async (req, res) => {
 router.get('/reservations', auth.simple, async (req, res) => {
   try {
     const reservations = await Reservation.find({});
-    console.log("lima");
     res.send(reservations);
   } catch (e) {
     res.status(400).send(e);
