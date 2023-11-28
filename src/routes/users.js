@@ -35,7 +35,6 @@ router.post('/users/photo/:id', upload('users').single('file'), async (req, res,
     await user.save();
     res.send({ user, file });
   } catch (e) {
-    console.log(e);
     res.sendStatus(400).send(e);
   }
 });
@@ -111,9 +110,7 @@ router.post('/users/logout', auth.simple, async (req, res) => {
     });
     await req.user.save();
     res.send({});
-    console.log("logout yes");
   } catch (e) {
-    console.log("logout kontol");
     res.status(400).send(e);
   }
 });
@@ -170,7 +167,6 @@ router.get('/users/:id', auth.enhance, async (req, res) => {
 
 // Edit/Update user
 router.patch('/users/me', auth.simple, async (req, res) => {
-  console.log(req.body);
   const updates = Object.keys(req.body);
   const allowedUpdates = ['name', 'phone', 'username', 'email', 'password'];
   const isValidOperation = updates.every((update) => allowedUpdates.includes(update));
@@ -237,9 +233,7 @@ router.delete('/users/testDelete/:id', async (req, res) => {
   try {
     const user = await User.findByIdAndDelete(_id);
     res.send({ message: 'User Deleted' });
-    console.log(" DELETE YES");
   } catch (e) {
-    console.log("ERROR DELETE");
     res.sendStatus(400);
   }
 });

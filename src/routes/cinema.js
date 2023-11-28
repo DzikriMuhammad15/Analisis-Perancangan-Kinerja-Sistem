@@ -33,7 +33,6 @@ router.post('/cinemas/photo/:id', upload('cinemas').single('file'), async (req, 
     await cinema.save();
     res.send({ cinema, file });
   } catch (e) {
-    console.log(e);
     res.sendStatus(400).send(e);
   }
 });

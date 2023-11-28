@@ -20,9 +20,7 @@ router.get('/showtimes', async (req, res) => {
   try {
     const showtimes = await Showtime.find({});
     res.send(showtimes);
-    console.log("enam");
   } catch (e) {
-    console.log("KONTOOOLLLL");
     res.status(400).send(e);
   }
 });

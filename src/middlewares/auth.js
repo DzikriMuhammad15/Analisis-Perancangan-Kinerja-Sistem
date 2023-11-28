@@ -31,7 +31,6 @@ const enhance = async (req, res, next) => {
     req.user = user;
     next();
   } catch (e) {
-    console.log("kontol");
     res.status(401).send({ error: 'Please authenticate.' });
   }
 };
