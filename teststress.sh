@@ -1,0 +1,1 @@
+docker-compose run k6 /scripts/stressTestScript.js
