@@ -1,1 +1,1 @@
-docker-compose run k6 /scripts/smokeTestScript.js
+docker-compose run k6 run /scripts/smokeTestScript.js

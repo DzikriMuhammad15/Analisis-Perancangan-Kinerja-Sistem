@@ -1,1 +1,1 @@
-docker-compose run k6 /scripts/stressTestScript.js
+docker-compose run k6 run /scripts/stressTestScript.js

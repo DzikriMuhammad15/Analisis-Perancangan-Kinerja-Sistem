@@ -1,1 +1,1 @@
-docker-compose run k6 /scripts/loadTestScript.js
+docker-compose run k6 run /scripts/loadTestScript.js

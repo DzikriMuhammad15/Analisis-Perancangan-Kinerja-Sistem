@@ -87,7 +87,6 @@ services:
       - mynetwork
       - k6
     # Coba test setup
-    command: ["run", "--out", "influxdb=http://influxdb:8086/k6", "/scripts/stressTestScript.js"]
     depends_on:
       - app # Tunggu hingga layanan app selesai dimulai
     ports:
