@@ -24,13 +24,6 @@ const PASSWORD = "pw123456";
 export default function () {
   let authToken;
 
-  group("Create user", () => {
-    const loginRes = http.post(
-      `${BASE_URL}/users/login`,
-      JSON.stringify({ username: USERNAME, password: PASSWORD }),
-      { headers: { "Content-Type": "application/json" } }
-    );
-  });
   // Group for user login
   group("User Login", () => {
     const loginRes = http.post(
